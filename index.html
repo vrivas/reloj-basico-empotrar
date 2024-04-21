@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Reloj Básico para Empotrar en Webs</title>
+</head>
+<style>
+    #tiempo {
+        font-size: 3em;
+    }
+    #content {
+        text-align: center;
+        width: fit-content;
+    }
+</style>
+
+<body>
+    <div id="content">
+        <div id="tiempo"></div>
+        <div id="fecha"></div>
+    </div>
+
+    <script>
+        function muestraReloj() {
+            var fechaHora = new Date();
+            var horas = fechaHora.getHours();
+            var minutos = fechaHora.getMinutes();
+            var segundos = fechaHora.getSeconds();
+            //var ampm = horas >= 12 ? 'PM' : 'AM';
+            //horas = horas % 12;
+            //horas = horas ? horas : 12;
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+            var hora = horas + ':' + minutos// + ':' + segundos// + ' ' + ampm;
+            document.getElementById('tiempo').innerHTML = hora;
+        }
+        function muestraFecha() {
+            var fechaHora = new Date();
+            var dia = fechaHora.getDate();
+            var mes = fechaHora.getMonth() + 1;
+            var anio = fechaHora.getFullYear();
+            var diaSemana = fechaHora.getDay();
+            var semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            var mesNombre = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            var fecha = semana[diaSemana].substr(0, 3) + ', ' + dia + '/' + mesNombre[mes - 1].substr(0, 3) + '/' + anio;
+            document.getElementById('fecha').innerHTML = fecha;
+        }
+        function main() {
+            muestraReloj();
+            muestraFecha();
+        }
+        main();
+        setInterval(main, 60* 1000);
+
+    </script>
+</body>
+
+</html>
